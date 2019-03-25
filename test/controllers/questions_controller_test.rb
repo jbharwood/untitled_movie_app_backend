@@ -12,7 +12,7 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create question" do
     assert_difference('Question.count') do
-      post questions_url, params: { question: { credits: @question.credits, genre: @question.genre, keywords: @question.keywords, synopsis: @question.synopsis, title: @question.title } }, as: :json
+      post questions_url, params: { question: { synopsis: @question.synopsis, title: @question.title, movie_id: @question.movie_id} }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update question" do
-    patch question_url(@question), params: { question: { credits: @question.credits, genre: @question.genre, keywords: @question.keywords, synopsis: @question.synopsis, title: @question.title } }, as: :json
+    patch question_url(@question), params: { question: { synopsis: @question.synopsis, title: @question.title, movie_id: @question.movie_id} }, as: :json
     assert_response 200
   end
 

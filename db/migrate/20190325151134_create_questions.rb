@@ -3,9 +3,7 @@ class CreateQuestions < ActiveRecord::Migration[5.2]
     create_table :questions do |t|
       t.string :title
       t.string :synopsis
-      t.string :genre
-      t.string :keywords
-      t.string :credits
+      t.integer :movie_id
 
       t.timestamps
     end

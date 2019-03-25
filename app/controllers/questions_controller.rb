@@ -1,16 +1,14 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :update, :destroy]
+  # before_action :set_question, only: [:show, :update, :destroy]
 
   # GET /questions
   def index
-
     @questions=Question.all
     render json: @questions
   end
   # POST /questions
   def create
     @question = Question.new(question_params)
-
     if @question.save
       render json: @question, status: :created, location: @question
     else
@@ -19,36 +17,20 @@ class QuestionsController < ApplicationController
   end
 
 
-
-  def fetchMovies(num)
-    i = 0
-    while i < num do
-      i = i + 1
-      url = "https://api.themoviedb.org/3/movie/#{i}?api_key=3eb68659d6134fa388c1a0220feb7fd1&language=en-US"
-      begin
-        response = RestClient.get(url)
-        result_array = JSON.parse(response)
-        Question.create(title: result_array["title"], synopsis: result_array["overview"])
-      rescue RestClient::ExceptionWithResponse => e
-          e.response.to_s
-        end
-      # return JSON.parse(response)
-    # result = RestClient::Request.execute(method: :get,
-    #     url: "https://api.themoviedb.org/3/movie/#{i}?api_key=3eb68659d6134fa388c1a0220feb7fd1&language=en-US")
-  end
-  # url = "https://api.themoviedb.org/3/movie/2?api_key=3eb68659d6134fa388c1a0220feb7fd1&language=en-US"
-  # response = RestClient.get(url)
-  # return JSON.parse(response)
-end
-
-def movieIterator
-  i=0
-  fetchMovies(i)
-end
-
-
-
-
+  # def fetchMovies(num)
+  #   i = 0
+  #   while i < num do
+  #     i = i + 1
+  #     url = "https://api.themoviedb.org/3/movie/#{i}?api_key=3eb68659d6134fa388c1a0220feb7fd1&language=en-US"
+  #     begin
+  #       response = RestClient.get(url)
+  #       result_array = JSON.parse(response)
+  #       Question.create(title: result_array["title"], synopsis: result_array["overview"], movie_id:result_array["id"])
+  #     rescue RestClient::ExceptionWithResponse => e
+  #         e.response.to_s
+  #       end
+  #   end
+  # end
 
   # GET /questions/1
   def show
@@ -78,6 +60,6 @@ end
 
     # Only allow a trusted parameter "white list" through.
     def question_params
-      params.require(:question).permit(:title, :synopsis, :genre, :keywords, :credits)
+      params.require(:question).permit(:title, :movie_id, :synopsis)
     end
 end
