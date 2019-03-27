@@ -44,6 +44,9 @@ def fetchSimilarMovies(num)
   end
 end
 
+User.create(username:"cool")
+User.create(username:"bill")
+User.create(username:"steve")
 
 fetchMovies(20)
 fetchSimilarMovies(20)
