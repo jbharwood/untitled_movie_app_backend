@@ -33,7 +33,9 @@ def fetchSimilarMovies(num)
       result_array = JSON.parse(response)
       y = 0
       while y < result_array["results"].length
-        Answer.create(question: Question.find_by(movie_id: i), title: result_array["results"][y]["title"])
+        q = Question.find_by(movie_id: i)
+        Answer.create(question_id: q.id, title: result_array["results"][y]["title"])
+        # Answer.create(question: Question.find_by(movie_id: i), title: result_array["results"][y]["title"])
         y+=1
     end
     rescue RestClient::ExceptionWithResponse => e
@@ -43,5 +45,5 @@ def fetchSimilarMovies(num)
 end
 
 
-fetchMovies(100)
-fetchSimilarMovies(100)
+fetchMovies(20)
+fetchSimilarMovies(20)
