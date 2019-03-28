@@ -1,8 +1,8 @@
 class CreateAnswers < ActiveRecord::Migration[5.2]
   def change
     create_table :answers do |t|
-      t.title :string
-      t.question_id :integer
+      t.string :title
+      t.integer :question_id
 
       t.timestamps
     end
