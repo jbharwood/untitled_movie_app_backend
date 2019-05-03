@@ -10,7 +10,7 @@ class GameInstancesController < ApplicationController
 
   # GET /game_instances/1
   def show
-    render json: @game_instance
+    render json: @game_instance 
   end
 
   # POST /game_instances
@@ -18,6 +18,8 @@ class GameInstancesController < ApplicationController
     @game_instance = GameInstance.new(game_instance_params)
 
     if @game_instance.save
+      ActionCable.server.broadcast("feed_channel", @game_instance)
+
       render json: @game_instance, status: :created, location: @game_instance
     else
       render json: @game_instance.errors, status: :unprocessable_entity
