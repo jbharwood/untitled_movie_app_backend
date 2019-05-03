@@ -48,5 +48,5 @@ User.create(username:"cool")
 User.create(username:"bill")
 User.create(username:"steve")
 
-fetchMovies(20)
-fetchSimilarMovies(20)
+fetchMovies(5)
+fetchSimilarMovies(5)
