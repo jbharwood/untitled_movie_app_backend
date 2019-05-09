@@ -34,7 +34,7 @@ def fetchSimilarMovies(num)
       y = 0
       while y < result_array["results"].length
         q = Question.find_by(movie_id: i)
-        Answer.create(question_id: q.id, title: result_array["results"][y]["title"])
+        Answer.create(question_id: q.id, title: result_array["results"][y]["title"], active: false)
         # Answer.create(question: Question.find_by(movie_id: i), title: result_array["results"][y]["title"])
         y+=1
     end

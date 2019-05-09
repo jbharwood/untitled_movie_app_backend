@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :game_answers
   resources :game_users
   resources :game_instances
   resources :game_questions

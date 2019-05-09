@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-  # before_action :set_answer, only: [:show, :update, :destroy]
+  before_action :set_answer, only: [:show, :update, :destroy]
 
   # GET /answers
   def index
@@ -65,6 +65,6 @@ class AnswersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def answer_params
-      params.require(:answer).permit(:question_id, :title)
+      params.require(:answer).permit(:question_id, :title, :active)
     end
 end
